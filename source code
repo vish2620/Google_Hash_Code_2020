@@ -34,5 +34,6 @@ int main()
     {
         printDigit(digits, 0, i-1);
     }
+    
     fclose(pf);
 }
