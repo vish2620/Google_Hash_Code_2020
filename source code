@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<stdlib.h>
+int a,b;
+void printDigit(char* digits, int offset, int n) 
+{
+    for (int i = 0; i <= b; i++) 
+    {
+        digits[offset] = '0' + i;
+        if (n > 0) 
+        {
+            printDigit(digits, offset + 1, n - 1);
+        } 
+        else 
+        {
+            printf("%s\n", digits);
+        }
+    }
+}
+
+int main() 
+{
+    FILE *pf;
+    int pp;
+    pf=fopen("fileP.txt","r");
+    fscanf(pf,"%d %d\n",&a,&b);
+    int c[b];
+    for(pp=0;pp<b;pp++)
+    {
+    fscanf(pf,"%d ",&c[pp]);
+    }
+    char digits[a+1];
+    digits[a+1]=0;
+    for (int i = 1; i <= a; i++) 
+    {
+        printDigit(digits, 0, i-1);
+    }
+    fclose(pf);
+}
