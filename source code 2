@@ -1,0 +1,55 @@
+#include<math.h>
+#include<stdio.h>
+long a,b,c[50];
+void input();
+void input()
+{
+    FILE *pf;
+    pf=fopen("c_medium.txt","r");
+    fscanf(pf,"%ld %ld\n",&a,&b);
+    for(int i=0;i<b;i++)
+    {
+        fscanf(pf,"%ld ",&c[i]);
+    }
+    fclose(pf);
+}
+void main()
+{
+    input();
+    long difference=a,comb=pow(2,b),result;
+    long sum;
+    short binary[b],result_arry[b];
+    for(int i=1;i<=comb;i++)
+    {
+        int num=i;
+        sum=0;
+        for(int j=b-1;j>=0;j--)
+        {
+            binary[j]=num%2;
+            num=num/2;
+        }
+        for(int j=0;j<b;j++)
+        {
+            printf("%d",binary[j]);
+        }
+        printf("\n");
+        for(int j=0;j<b;j++)
+        {
+            sum=sum+(binary[j]*c[j]);
+        }
+        if((difference>(a-sum))&&(sum<=a))
+        {
+            difference=a-sum;
+            result=sum;
+            for(int j=0;j<b;j++)
+            {
+                result_arry[j]=binary[j];
+            }
+        }
+    }
+    /*for(int j=0;j<b;j++)
+    {
+        printf("%d",result_arry[j]);
+    }*/
+    printf("\n%ld",result);
+}
