@@ -1,0 +1,45 @@
+with open("b_small.in","r") as f:
+        x=f.readline()
+        y=x.find(" ")
+        z=x.find("\n")
+        a=int(x[:y])
+        b=int(x[y+1:z])
+        x=f.readline()
+        c=x.split(' ')
+        c[-1] = c[-1].strip()
+f1=open("b_small.out",'w')
+i1=0
+ans=0
+for con in c:
+    c[i1]=int(con)
+    i1+=1
+bin=[None]*b
+result_array=[None]*b
+difference=a
+for i in range(pow(2,b)):
+    num=i
+    j=b-1
+    sum=0
+    while j>=0:
+        bin[j]=int(num%2)
+        num=int(num/2)
+        j-=1
+    for k in range(b):
+        sum=sum+(bin[k]*c[k])
+        if(sum>a):
+            break
+    if((difference>(a-sum))and(sum<=a)):
+        difference=a-sum
+        result=sum
+        for l in range(b):
+            result_array[l]=bin[l]
+for i in range(b):
+    if(result_array[i]==1):
+        ans=ans+1
+f1.write(str(ans)+"\n")
+for i in range(b):
+    if((result_array[i]==1)and(ans==1)):
+        f1.write(str(i))
+    if((result_array[i]==1)and(ans!=1)):
+        ans=ans-1
+        f1.write(str(i)+" ")
